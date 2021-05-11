@@ -1,12 +1,19 @@
 package cz.czechitas.java2webapps.lekce7.service;
 
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.time.Month;
 
 /**
  * @author Filip Jirsák
  */
+@Service
 public class CalendarService {
+  public int getCurrentYear() {
+    return LocalDate.now().getYear();
+  }
+
   public CalendarData christmas(int year) {
     LocalDate date = LocalDate.of(year, Month.DECEMBER, 24);
     return new CalendarData()
