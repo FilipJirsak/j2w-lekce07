@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class CalendarServiceTest {
 
-  private final CalendarService calendarService = new CalendarService();
+  private final CalendarService calendarService = new CalendarService(new CurrentDateService());
 
   @Test
   void testChristmas() {

@@ -1,18 +1,35 @@
 package cz.czechitas.java2webapps.lekce7.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.time.Month;
 
 /**
  * @author Filip Jirsák
  */
+@Service
 public class CalendarService {
+
+  private final CurrentDateService currentDateService;
+
+  @Autowired
+  public CalendarService(CurrentDateService currentDateService) {
+    this.currentDateService = currentDateService;
+  }
+
   public CalendarData christmas(int year) {
     LocalDate date = LocalDate.of(year, Month.DECEMBER, 24);
     return new CalendarData()
             .append("Štědrý den", date)
             .append("1. Svátek vánoční", date.plusDays(1L))
             .append("2. Svátek vánoční", date.plusDays(2L));
+  }
+
+  public CalendarData christmas() {
+    return christmas(currentDateService.currentDate().getYear());
   }
 
   public CalendarData sylvester(int year) {
